@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>올바른 분리배출 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=DM+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-darkest: #04342C;
+    --green-dark:    #085041;
+    --green-mid:     #0F6E56;
+    --green-base:    #1D9E75;
+    --green-light:   #5DCAA5;
+    --green-pale:    #9FE1CB;
+    --green-ghost:   #E1F5EE;
+    --amber:         #BA7517;
+    --amber-light:   #FAEEDA;
+    --red:           #A32D2D;
+    --red-light:     #FCEBEB;
+    --blue:          #185FA5;
+    --blue-light:    #E6F1FB;
+    --text-primary:  #1a1a1a;
+    --text-secondary:#555;
+    --text-muted:    #888;
+    --bg:            #f8f7f4;
+    --surface:       #ffffff;
+    --border:        rgba(0,0,0,0.08);
+    --border-mid:    rgba(0,0,0,0.13);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.09);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    gap: 2rem;
+  }
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .nav-logo-icon {
+    width: 28px; height: 28px;
+    background: var(--green-base);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+  }
+  .nav-tab {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all .15s;
+    border: none;
+    background: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: nowrap;
+  }
+  .nav-tab.active, .nav-tab:hover {
+    background: var(--green-ghost);
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+  .nav-search-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .nav-search {
+    padding: 7px 14px 7px 34px;
+    border: 0.5px solid var(--border-mid);
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    background: var(--bg);
+    color: var(--text-primary);
+    width: 220px;
+    transition: border-color .15s, width .2s;
+  }
+  .nav-search:focus { border-color: var(--green-base); width: 260px; }
+  .nav-search-icon {
+    position: absolute; left: 10px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px; color: var(--text-muted);
+    pointer-events: none;
+  }
+  .search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--surface);
+    border: 0.5px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    z-index: 200;
+    overflow: hidden;
+  }
+  .search-dropdown.show { display: block; }
+  .search-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background .12s;
+  }
+  .search-item:hover { background: var(--bg); }
+  .search-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-dark);
+    padding: 4rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 50%, rgba(29,158,117,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 30%, rgba(93,202,165,0.2) 0%, transparent 45%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--green-pale);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: .75rem;
+  }
+  .hero p {
+    color: rgba(255,255,255,.75);
+    font-size: .95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .hero-law {
+    display: inline-block;
+    background: rgba(0,0,0,.25);
+    color: rgba(255,255,255,.65);
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 12px;
+  }
+
+  /* ── PRINCIPLES ── */
+  .principles-section { max-width: 900px; margin: -2.5rem auto 0; padding: 0 1.5rem; position: relative; z-index: 2; }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .principle-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.1rem .75rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .principle-num {
+    width: 36px; height: 36px;
+    background: var(--green-ghost);
+    color: var(--green-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 700;
+    margin: 0 auto .5rem;
+  }
+  .principle-label { font-size: .8rem; font-weight: 500; color: var(--text-secondary); }
+
+  /* ── MAIN CONTENT ── */
+  .main-content { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  .section-label {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* ── CATEGORY GRID ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+    margin-bottom: 2.5rem;
+  }
+  .cat-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1rem;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-mid);
+  }
+  .cat-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  .cat-icon { font-size: 26px; margin-bottom: .6rem; display: block; }
+  .cat-name { font-size: .9rem; font-weight: 500; margin-bottom: .3rem; }
+  .cat-desc { font-size: .75rem; color: var(--text-secondary); line-height: 1.5; }
+  .cat-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: .6rem;
+    font-weight: 500;
+  }
+
+  /* ── DETAIL VIEW ── */
+  #detail-view { display: none; }
+  .detail-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .detail-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .detail-icon { font-size: 32px; }
+  .detail-title { font-size: 1.15rem; font-weight: 500; }
+  .detail-subtitle { font-size: .78rem; color: var(--text-secondary); margin-top: 3px; }
+  .back-btn {
+    margin-left: auto;
+    background: var(--bg);
+    border: 0.5px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-primary);
+    transition: background .15s;
+    flex-shrink: 0;
+  }
+  .back-btn:hover { background: var(--green-ghost); color: var(--green-dark); }
+
+  .steps-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+  .step-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+  .step-num {
+    flex-shrink: 0; width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 13px; line-height: 1.6; }
+  .step-text strong { font-weight: 500; }
+
+  .items-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
+  .item-ok, .item-no {
+    display: flex; align-items: flex-start; gap: 8px;
+    border-radius: var(--radius-sm);
+    padding: 8px 11px; font-size: 12.5px;
+  }
+  .item-ok { background: #EAF3DE; }
+  .item-no { background: var(--red-light); }
+  .item-ok .mark { color: #3B6D11; font-weight: 700; flex-shrink: 0; }
+  .item-no .mark { color: var(--red); font-weight: 700; flex-shrink: 0; }
+  .item-ok .txt { color: #27500A; }
+  .item-no .txt { color: var(--red); }
+
+  .warn-box {
+    background: #FAEEDA;
+    border-left: 3px solid var(--amber);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: .85rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .warn-title { font-size: 12px; font-weight: 500; color: var(--amber); margin-bottom: .35rem; }
+  .warn-text { font-size: 12.5px; color: #633806; line-height: 1.6; }
+
+  .law-box {
+    background: var(--green-ghost);
+    border: 0.5px solid var(--green-pale);
+    border-radius: var(--radius-sm);
+    padding: .85rem 1rem;
+  }
+  .law-text { font-size: 12px; color: var(--green-dark); line-height: 1.65; }
+
+  .items-sec-title { font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
+
+  /* ── QUIZ ── */
+  .quiz-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .quiz-q { font-size: .95rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.55; }
+  .quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: .9rem; }
+  .q-opt {
+    background: var(--bg);
+    border: 0.5px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    padding: 9px 13px; font-size: 13px;
+    cursor: pointer;
+    transition: background .12s, border-color .12s;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-primary);
+    text-align: left;
+    line-height: 1.4;
+  }
+  .q-opt:hover { background: var(--green-ghost); border-color: var(--green-pale); }
+  .q-opt.correct { background: #EAF3DE; border-color: #639922; color: #3B6D11; }
+  .q-opt.wrong { background: var(--red-light); border-color: #E24B4A; color: var(--red); }
+  .q-fb {
+    font-size: 13px; padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    line-height: 1.55; display: none;
+  }
+  .q-fb.show { display: block; }
+  .q-fb.ok { background: #EAF3DE; color: #3B6D11; }
+  .q-fb.no { background: var(--red-light); color: var(--red); }
+  .q-next-btn {
+    margin-top: 10px;
+    background: var(--green-base);
+    color: #fff; border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 20px; font-size: 13px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: none; transition: background .15s;
+  }
+  .q-next-btn.show { display: inline-block; }
+  .q-next-btn:hover { background: var(--green-mid); }
+  .quiz-counter { font-size: 12px; color: var(--text-muted); margin-bottom: .75rem; }
+
+  /* ── CHATBOT PAGE ── */
+  .chat-page-wrap { max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .chat-header-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .chat-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green-ghost);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .chat-hd-title { font-size: 1rem; font-weight: 500; }
+  .chat-hd-sub { font-size: .78rem; color: var(--text-secondary); margin-top: 2px; }
+  .online-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green-base); margin-left: auto; flex-shrink: 0; }
+
+  .quick-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.25rem; }
+  .quick-chip {
+    background: var(--surface);
+    border: 0.5px solid var(--border-mid);
+    border-radius: 20px;
+    padding: 6px 13px; font-size: 12.5px;
+    cursor: pointer;
+    transition: all .12s;
+    color: var(--text-primary);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .quick-chip:hover { background: var(--green-ghost); border-color: var(--green-pale); color: var(--green-dark); }
+
+  .messages-area {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 320px;
+    margin-bottom: 1rem;
+  }
+  .msg { display: flex; gap: 8px; align-items: flex-end; max-width: 88%; }
+  .msg.user { flex-direction: row-reverse; align-self: flex-end; }
+  .msg-av {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--green-ghost);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  .bubble {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-size: 13.5px; line-height: 1.65;
+  }
+  .msg.bot .bubble {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-bottom-left-radius: 4px;
+    color: var(--text-primary);
+  }
+  .msg.user .bubble {
+    background: var(--green-dark);
+    color: #E1F5EE;
+    border-bottom-right-radius: 4px;
+  }
+  .verdict-badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 9px; border-radius: 10px; margin-bottom: 5px;
+  }
+  .v-recycle { background: var(--green-ghost); color: var(--green-dark); }
+  .v-general { background: var(--red-light); color: var(--red); }
+  .v-food    { background: #EAF3DE; color: #27500A; }
+  .v-special { background: var(--amber-light); color: #633806; }
+
+  .typing-indicator {
+    display: flex; gap: 5px; align-items: center;
+    padding: 12px 14px;
+    background: var(--bg); border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); border-bottom-left-radius: 4px;
+    width: fit-content;
+  }
+  .t-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-muted);
+    animation: tdot 1.2s ease-in-out infinite;
+  }
+  .t-dot:nth-child(2) { animation-delay: .2s; }
+  .t-dot:nth-child(3) { animation-delay: .4s; }
+  @keyframes tdot { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
+
+  .input-row { display: flex; gap: 8px; align-items: flex-end; }
+  .textarea-wrap { flex: 1; }
+  #chat-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 0.5px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    font-size: 13.5px; resize: none;
+    min-height: 46px; max-height: 120px;
+    line-height: 1.5; outline: none;
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: border-color .15s;
+    overflow-y: auto;
+  }
+  #chat-input:focus { border-color: var(--green-base); }
+  #send-btn {
+    width: 46px; height: 46px;
+    background: var(--green-dark); border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background .15s;
+  }
+  #send-btn:hover { background: var(--green-mid); }
+  #send-btn:disabled { background: var(--border-mid); cursor: not-allowed; }
+  .chat-note {
+    font-size: 11.5px; color: var(--text-muted);
+    text-align: center; margin-top: .75rem; line-height: 1.55;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-darkest);
+    padding: 2rem;
+    text-align: center;
+    color: rgba(255,255,255,.45);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  footer strong { color: rgba(255,255,255,.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; gap: 1rem; }
+    .nav-search { width: 160px; }
+    .nav-search:focus { width: 180px; }
+    .hero { padding: 3rem 1.25rem 4.5rem; }
+    .hero h1 { font-size: 1.9rem; }
+    .principles-section { padding: 0 1rem; }
+    .principles-grid { grid-template-columns: repeat(2, 1fr); }
+    .main-content { padding: 2rem 1rem 3rem; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .items-cols { grid-template-columns: 1fr; }
+    .quiz-opts { grid-template-columns: 1fr; }
+    .chat-page-wrap { padding: 1.5rem 1rem 3rem; }
+    nav { flex-wrap: wrap; height: auto; padding: .75rem 1rem; }
+    .nav-tabs { order: 3; width: 100%; overflow-x: auto; padding-bottom: 2px; }
+    .nav-search-wrap { order: 2; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp .35s ease both; }
+  .fade-up-1 { animation-delay: .05s; }
+  .fade-up-2 { animation-delay: .1s; }
+  .fade-up-3 { animation-delay: .15s; }
+  .fade-up-4 { animation-delay: .2s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">♻</div>
+    분리배출 가이드
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('guide')">분리배출 안내</button>
+    <button class="nav-tab" onclick="showPage('quiz')">퀴즈</button>
+    <button class="nav-tab" onclick="showPage('chat')">AI 챗봇</button>
+  </div>
+  <div class="nav-search-wrap">
+    <span class="nav-search-icon">🔍</span>
+    <input class="nav-search" id="nav-search" type="text" placeholder="품목 검색…" autocomplete="off">
+    <div class="search-dropdown" id="search-dd"></div>
+  </div>
+</nav>
+
+<!-- ═══════════════ PAGE: GUIDE ═══════════════ -->
+<div class="page active" id="page-guide">
+
+  <div class="hero">
+    <div class="hero-inner fade-up">
+      <div class="hero-badge">♻ 대한민국 공식 분리배출 안내</div>
+      <h1>올바른 분리배출<br>가이드</h1>
+      <p>「자원의 절약과 재활용촉진에 관한 법률」 및<br>기후에너지환경부 지침에 따른 공식 분리배출 방법</p>
+      <div class="hero-law">근거: 재활용가능자원의 분리수거 등에 관한 지침</div>
+    </div>
+  </div>
+
+  <div class="principles-section">
+    <div class="principles-grid">
+      <div class="principle-card fade-up fade-up-1"><div class="principle-num">①</div><div class="principle-label">비운다</div></div>
+      <div class="principle-card fade-up fade-up-2"><div class="principle-num">②</div><div class="principle-label">헹군다</div></div>
+      <div class="principle-card fade-up fade-up-3"><div class="principle-num">③</div><div class="principle-label">분리한다</div></div>
+      <div class="principle-card fade-up fade-up-4"><div class="principle-num">④</div><div class="principle-label">섞지 않는다</div></div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div id="guide-main">
+      <div class="section-label">카테고리별 분리배출</div>
+      <div class="cat-grid" id="cat-grid"></div>
+    </div>
+
+    <div id="detail-view">
+      <div class="detail-card" id="detail-card-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PAGE: QUIZ ═══════════════ -->
+<div class="page" id="page-quiz">
+  <div class="main-content">
+    <div class="section-label">분리배출 퀴즈</div>
+
+    <!-- 진행 중 화면 -->
+    <div id="quiz-playing">
+      <div class="quiz-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+          <div class="quiz-counter" id="quiz-counter" style="margin-bottom:0">문제 1 / 10</div>
+          <div id="quiz-score-live" style="font-size:12px;color:var(--text-muted)">맞춤: 0</div>
+        </div>
+        <div id="quiz-progress-bar" style="height:4px;background:var(--border);border-radius:2px;margin-bottom:1.1rem;overflow:hidden">
+          <div id="quiz-progress-fill" style="height:100%;background:var(--green-base);border-radius:2px;transition:width .3s ease;width:0%"></div>
+        </div>
+        <div class="quiz-q" id="quiz-q"></div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="q-fb" id="quiz-fb"></div>
+        <button class="q-next-btn" id="quiz-next">다음 문제 →</button>
+      </div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="quiz-result" style="display:none">
+      <div class="quiz-card" style="text-align:center;padding:2.5rem 1.5rem">
+        <div id="result-emoji" style="font-size:3.5rem;margin-bottom:1rem">🎉</div>
+        <div id="result-title" style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem"></div>
+        <div id="result-sub" style="font-size:.9rem;color:var(--text-secondary);margin-bottom:1.75rem;line-height:1.6"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.75rem" id="result-stats"></div>
+        <div id="result-review" style="text-align:left;margin-bottom:1.75rem"></div>
+        <button onclick="restartQuiz()" style="background:var(--green-base);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px 28px;font-size:14px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .15s" onmouseover="this.style.background='var(--green-mid)'" onmouseout="this.style.background='var(--green-base)'">다시 풀기 →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ PAGE: CHAT ═══════════════ -->
+<div class="page" id="page-chat">
+  <div class="chat-page-wrap">
+    <div class="chat-header-card">
+      <div class="chat-avatar">♻</div>
+      <div>
+        <div class="chat-hd-title">분리배출 AI 도우미</div>
+        <div class="chat-hd-sub">대한민국 공식 분리배출 기준 기반 · Claude AI 탑재</div>
+      </div>
+      <div class="online-dot"></div>
+    </div>
+
+    <div class="quick-chips" id="quick-chips">
+      <div class="quick-chip" onclick="quickAsk('치킨 박스가 기름에 젖었는데 어떻게 버려요?')">🍗 기름 묻은 치킨 박스</div>
+      <div class="quick-chip" onclick="quickAsk('투명 페트병 뚜껑은 어디에 버리나요?')">🍶 페트병 뚜껑</div>
+      <div class="quick-chip" onclick="quickAsk('음식물 묻은 비닐봉지는 재활용 되나요?')">🛍 오염된 비닐</div>
+      <div class="quick-chip" onclick="quickAsk('영수증 종이는 재활용 되나요?')">🧾 영수증</div>
+      <div class="quick-chip" onclick="quickAsk('장난감 레고는 어떻게 버려요?')">🧸 장난감·레고</div>
+      <div class="quick-chip" onclick="quickAsk('우산은 어떻게 버려야 하나요?')">☂️ 우산</div>
+      <div class="quick-chip" onclick="quickAsk('화장품 용기는 재활용 되나요?')">💄 화장품 용기</div>
+      <div class="quick-chip" onclick="quickAsk('약은 어떻게 버려야 하나요?')">💊 약·의약품</div>
+      <div class="quick-chip" onclick="quickAsk('이어폰 충전기는 어디에 버리나요?')">🔌 충전기·이어폰</div>
+      <div class="quick-chip" onclick="quickAsk('스티로폼에 테이프가 붙어 있어요')">📦 테이프 붙은 스티로폼</div>
+      <div class="quick-chip" onclick="quickAsk('깨진 그릇은 어떻게 버려야 하나요?')">🍽 깨진 그릇</div>
+      <div class="quick-chip" onclick="quickAsk('달걀 껍데기는 음식물쓰레기인가요?')">🥚 달걀 껍데기</div>
+    </div>
+
+    <div class="messages-area" id="messages"></div>
+
+    <div class="input-row">
+      <div class="textarea-wrap">
+        <textarea id="chat-input" rows="1" placeholder="예: 피자 박스가 기름에 젖었어요, 어떻게 버리나요?"></textarea>
+      </div>
+      <button id="send-btn" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M16 9L2 2l3 7-3 7 14-7z" fill="#9FE1CB"/>
+        </svg>
+      </button>
+    </div>
+    <div class="chat-note">Claude AI가 대한민국 분리배출 지침을 바탕으로 답변합니다 · 지자체별 규정이 다를 수 있으니 참고용으로 활용하세요</div>
+  </div>
+</div>
+
+<footer>
+  <strong>올바른 분리배출 가이드</strong><br>
+  근거: 「자원의 절약과 재활용촉진에 관한 법률」 · 기후에너지환경부 재활용가능자원의 분리수거 등에 관한 지침<br>
+  대형가전 무상수거: ☎ 1599-0903 · 자세한 내용은 내 손안의 분리배출 앱 참고
+</footer>
+
+<script>
+/* ─── DATA ─── */
+const cats = [
+  {
+    id:'pet', icon:'🍶', name:'투명 페트병', color:'#1D9E75',
+    desc:'생수·음료 무색 투명병 (별도 의무 배출)',
+    tag:'⚠ 전용함 별도 배출 의무',
+    law:'「재활용가능자원의 분리수거 등에 관한 지침」 개정(2020.8.24) — 2020.12.25부터 공동주택, 2021.12.25부터 단독주택도 투명 페트병 별도 분리배출 의무화. 미준수 시 최대 30만원 과태료.',
+    steps:[
+      {t:'내용물 비우기', d:'페트병 안 내용물을 완전히 비웁니다.'},
+      {t:'라벨 제거', d:'비닐 라벨을 완전히 제거합니다. 뗀 라벨은 비닐류로 따로 배출하세요.'},
+      {t:'압착 후 뚜껑 닫기', d:'발로 밟거나 손으로 눌러 납작하게 압착한 뒤, 뚜껑을 닫아 부피를 최소화합니다.'},
+      {t:'전용 수거함에 배출', d:'공동주택: 투명 페트병 전용 수거함 / 단독주택: 투명·반투명 봉투에 담아 지정 요일 배출'}
+    ],
+    ok:['생수병 (무색 투명)','음료수병 (무색 투명)','탄산음료병 (무색 투명)'],
+    no:['유색 페트병 → 플라스틱류로','일회용 플라스틱컵 → 플라스틱류로','과일 트레이 → 플라스틱류로'],
+    warn:'투명 페트병은 다른 플라스틱이나 유색 페트병과 절대 혼합 배출 금지! 아파트는 전용 수거함에, 단독주택은 지정 요일(주로 목·금요일)에 별도 봉투로 배출하세요.'
+  },
+  {
+    id:'plastic', icon:'🧴', name:'플라스틱·스티로폼', color:'#D85A30',
+    desc:'일반 플라스틱 용기류, 스티로폼',
+    tag:'내용물 제거 후 배출',
+    law:'환경부 분리배출 지침 — 합성수지 재질 용기류, 스티로폼은 내용물을 비우고 이물질(테이프 등) 제거 후 배출. 스티로폼은 전용 수거함 또는 별도 배출.',
+    steps:[
+      {t:'내용물 비우기', d:'용기 속 내용물을 완전히 비웁니다.'},
+      {t:'헹구기', d:'물로 깨끗이 헹궈 이물질을 제거합니다. 기름기가 많은 용기는 씻어도 제거가 어려우면 종량제봉투로.'},
+      {t:'라벨·이물질 제거', d:'비닐 라벨, 테이프 등을 제거합니다. 스티로폼은 테이프·이물질 완전 제거.'},
+      {t:'분리배출', d:'플라스틱류 수거함에 배출. 스티로폼은 전용 수거함 또는 별도 묶어서 배출.'}
+    ],
+    ok:['플라스틱 용기류 (PP, PE, PS 등)','유색 페트병','샴푸·세제 통 (헹굼 후)','스티로폼 (이물질 제거 후)','플라스틱 화장품 용기','배달 음식 용기 (기름기 제거 후)'],
+    no:['투명 페트병 → 전용함으로','세척 불가 오염 용기 → 종량제봉투','과일망 → 종량제봉투','낚싯대·유모차 → 대형폐기물'],
+    warn:'마요네즈·케첩·기름통 등 세척이 어려운 용기는 종량제봉투에 배출. 배달 용기는 기름때를 꼭 제거하세요.'
+  },
+  {
+    id:'paper', icon:'📦', name:'종이류', color:'#378ADD',
+    desc:'골판지, 신문지, 종이박스, 책자',
+    tag:'이물질 제거 + 접어서 배출',
+    law:'분리수거 지침 — 신문지·책자·골판지 등 종이류는 테이프 등 이물질 제거 후 물기에 젖지 않게 묶거나 박스에 담아 배출. 종이팩은 일반 종이류와 반드시 구분 배출.',
+    steps:[
+      {t:'이물질 제거', d:'택배 박스의 테이프, 송장 스티커를 모두 제거합니다.'},
+      {t:'해체·접기', d:'골판지 박스는 납작하게 해체해서 접어 차곡차곡 쌓습니다.'},
+      {t:'묶거나 담기', d:'신문지·전단지는 묶어서 배출. 물기에 젖지 않도록 주의.'},
+      {t:'종이팩 구분', d:'우유팩·멸균팩은 일반 종이류와 혼합 금지! 따로 모아 별도 배출.'}
+    ],
+    ok:['택배·골판지 박스 (테이프 제거)','신문지·전단지·책자','종이 쇼핑백','복사 용지·노트'],
+    no:['기름·음식물 묻은 종이 → 종량제봉투','코팅된 종이 → 종량제봉투','화장지·물티슈 → 종량제봉투','1회용 기저귀 → 종량제봉투','우유팩·종이컵 → 별도 종이팩함'],
+    warn:'골판지 박스에 테이프, 비닐 스티커, 송장이 붙어 있으면 재활용이 불가합니다. 반드시 제거 후 납작하게 접어 배출하세요!'
+  },
+  {
+    id:'pakc', icon:'🥛', name:'종이팩·종이컵', color:'#5DCAA5',
+    desc:'우유팩·멸균팩·음료팩, 종이컵',
+    tag:'세척 후 별도 배출 → 화장지 교환',
+    law:'환경부 지침 — 종이팩은 일반 폐지류와 혼합 배출 금지. 내용물을 비우고 헹군 후 압착하여 별도 종이팩 수거함에 배출. 종이팩 2kg당 화장지 1롤로 교환 가능.',
+    steps:[
+      {t:'내용물 비우기', d:'팩 안 내용물을 완전히 비웁니다.'},
+      {t:'헹구기', d:'물로 깨끗이 헹궈 내부 이물질을 제거합니다.'},
+      {t:'말리기', d:'펼쳐서 충분히 말립니다. (냄새·곰팡이 방지)'},
+      {t:'별도 수거함에 배출', d:'일반 종이류 아닌 종이팩 전용 수거함에 배출. 없으면 묶어서 다른 재활용품과 함께 배출.'}
+    ],
+    ok:['우유팩 (일반팩)','멸균팩 (테트라팩)','주스·두유팩','종이컵 (헹굼 후)'],
+    no:['일반 종이류와 혼합 금지','일반팩과 멸균팩도 서로 구분 배출'],
+    warn:'일반 우유팩과 멸균팩(테트라팩)은 원료가 다르므로 따로 구분해서 배출해야 합니다. 2kg 모으면 주민센터에서 화장지로 교환 가능!'
+  },
+  {
+    id:'vinyl', icon:'🛍', name:'비닐류', color:'#7F77DD',
+    desc:'비닐봉지, 포장재 비닐 (별도 배출)',
+    tag:'투명 봉투에 모아 배출',
+    law:'분리수거 지침 — 비닐류는 이물질 제거 후 투명 또는 반투명 봉투에 모아 배출. 다른 재활용품과 혼합 금지.',
+    steps:[
+      {t:'이물질 제거', d:'음식물 등 이물질을 물로 헹궈 제거합니다.'},
+      {t:'모아서 배출', d:'비닐류끼리 모아 투명·반투명 봉투에 넣어 배출합니다.'},
+      {t:'플라스틱과 혼합 금지', d:'비닐은 반드시 비닐류 전용 수거함 또는 별도 봉투로 배출. 플라스틱류와 절대 혼합 금지!'}
+    ],
+    ok:['비닐봉지·쇼핑백','과자·라면 봉지 (헹굼 후)','택배 비닐봉투 (송장 미제거 가능)','뽁뽁이(에어캡)','양파망','지퍼백·냉동식품 봉지'],
+    no:['음식물 제거 불가 비닐 → 종량제봉투','랩·식탁보 → 종량제봉투','고무장갑·고무호스 → 종량제봉투','현수막 → 종량제봉투'],
+    warn:'랩, 식탁보, 고무장갑, 고무호스, 현수막은 비닐처럼 보여도 종량제봉투로 버려야 합니다. 단독주택은 지정 요일(목·금요일)에 별도로 배출하세요.'
+  },
+  {
+    id:'glass', icon:'🍾', name:'유리류', color:'#0F6E56',
+    desc:'유리병·용기류',
+    tag:'깨진 유리는 일반쓰레기',
+    law:'분리수거 지침 — 유리병·용기류는 내용물 비우고 헹궈서 배출. 소주·맥주병은 빈용기보증금 환급 가능. 깨진 유리·도자기·사기 그릇은 유리류 불가.',
+    steps:[
+      {t:'내용물 비우기', d:'병 안 내용물을 완전히 비웁니다.'},
+      {t:'헹구기', d:'물로 깨끗이 헹굽니다.'},
+      {t:'뚜껑 분리', d:'금속 뚜껑은 캔류, 플라스틱 뚜껑은 플라스틱류로 분리 배출.'},
+      {t:'유리류 수거함 배출', d:'소주·맥주병은 슈퍼마켓·편의점에서 빈용기 보증금 환급 가능!'}
+    ],
+    ok:['소주·맥주·음료 유리병','잼·소스 유리병','와인병','유리 화장품 용기'],
+    no:['깨진 유리 → 신문지에 싸서 종량제봉투','도자기·사기 그릇 → 불연성 쓰레기','크리스탈·내열 유리 → 불연성 쓰레기'],
+    warn:'깨진 유리는 절대 유리류 수거함에 넣지 마세요! 신문지나 두꺼운 종이로 싸서 종량제봉투에 버려야 합니다. 도자기·사기 그릇도 유리류가 아닌 불연성 쓰레기입니다.'
+  },
+  {
+    id:'can', icon:'🥫', name:'금속·캔류', color:'#BA7517',
+    desc:'알루미늄캔, 철캔, 고철류',
+    tag:'내용물 비우고 압착 배출',
+    law:'분리수거 지침 — 금속캔, 부탄가스·살충제 용기 등은 내용물 완전 제거 후 배출. 부탄가스·에어로졸은 구멍을 뚫어 내용물 완전 제거 후 배출 필수.',
+    steps:[
+      {t:'내용물 완전 비우기', d:'캔 안 내용물을 모두 비웁니다. 음료·식품캔은 헹궈서.'},
+      {t:'압착', d:'가능하면 압착해 부피를 줄입니다.'},
+      {t:'부탄가스·에어로졸 처리', d:'반드시 내용물을 완전히 소진하거나 야외에서 구멍을 뚫어 가스 제거 후 배출. 절대 불 근처에서 하지 마세요!'},
+      {t:'캔류 수거함 배출', d:'알루미늄캔과 철캔을 함께 배출해도 됩니다. 알루미늄 호일은 구겨서 캔류에.'}
+    ],
+    ok:['음료·맥주 알루미늄캔','참치·통조림 철캔','부탄가스 (내용물 완전 제거+구멍)','살충제 에어로졸 (완전 소진+구멍)','알루미늄 호일 (구겨서)','냄비·고철류'],
+    no:['내용물 남은 부탄가스·에어로졸 → 위험!','페인트·오일 용기 → 종량제봉투','플라스틱 뚜껑 → 플라스틱류로'],
+    warn:'부탄가스·살충제캔은 내용물이 남아 있으면 폭발 위험! 반드시 완전 소진 후 구멍을 뚫어 배출하세요.'
+  },
+  {
+    id:'food', icon:'🥦', name:'음식물쓰레기', color:'#639922',
+    desc:'먹다 남은 음식, 채소·과일',
+    tag:'물기 제거 후 전용봉투',
+    law:'「폐기물관리법」 및 음식물류 폐기물 종량제 — 음식물쓰레기는 음식물 전용봉투(종량제) 또는 전용 수거함에 배출. 동물이 먹을 수 없는 것(뼈·씨앗 등)은 일반쓰레기.',
+    steps:[
+      {t:'물기 제거', d:'물기를 최대한 제거합니다. 무게가 줄어 봉투 비용이 절감됩니다.'},
+      {t:'일반쓰레기 구분', d:'뼈, 씨앗, 껍데기(달걀·조개·땅콩)는 음식물쓰레기가 아닌 일반 종량제봉투로.'},
+      {t:'전용봉투·수거함 배출', d:'음식물 전용봉투(납부필증)에 담거나 RFID 음식물 수거함에 배출.'}
+    ],
+    ok:['밥·국·반찬 찌꺼기','채소 껍질 (파·양파·감자 등)','과일 껍질 (사과·귤·수박 등)','생선 살·내장 (가시 제외)','커피 찌꺼기·티백 내용물'],
+    no:['뼈·어패류 껍데기 → 일반쓰레기','달걀·견과류 껍데기 → 일반쓰레기','복숭아·살구·망고씨 → 일반쓰레기','파뿌리·옥수수대 → 일반쓰레기'],
+    warn:'뼈, 씨앗, 달걀·조개껍데기는 음식물쓰레기가 아닙니다. 동물이 먹을 수 없는 것 = 일반쓰레기로 기억하세요!'
+  },
+  {
+    id:'special', icon:'🔋', name:'특수 품목', color:'#D4537E',
+    desc:'폐전지, 형광등, 소형 가전, 의류',
+    tag:'전용 수거함 이용 필수',
+    law:'「전기·전자제품 및 자동차의 자원순환에 관한 법률」 — 폐전지·형광등·소형 가전은 일반쓰레기·재활용함 투입 금지. 전용 수거함(마트·주민센터·편의점 등) 이용. 대형 가전 무상방문수거: ☎1599-0903.',
+    steps:[
+      {t:'전지류', d:'건전지·휴대폰 배터리 등은 마트·편의점·주민센터 폐전지 전용 수거함에 배출.'},
+      {t:'형광등·LED', d:'깨지지 않게 폐형광등 전용 수거함에 배출.'},
+      {t:'소형 가전 (1m 미만)', d:'드라이어, 전자레인지 등 소형 가전은 재활용품 배출 시 함께 내놓거나 주민센터·아파트 전용 수거함 이용.'},
+      {t:'대형 가전 (1m 이상)', d:'냉장고·TV·세탁기 등은 대형폐가전 무상방문수거 서비스 신청 (☎1599-0903).'}
+    ],
+    ok:['건전지·리튬 배터리','형광등·백열전구','소형 가전 (드라이어, 믹서 등)','휴대폰','잉크 카트리지','헌옷·의류 (의류수거함)'],
+    no:['일반 쓰레기봉투에 배출 → 절대 금지','재활용함에 혼합 투입 → 절대 금지','솜이불 → 대형폐기물 신고 후 수수료 납부'],
+    warn:'배터리와 형광등은 절대 일반쓰레기나 재활용함에 넣으면 안 됩니다! 화재·환경오염 위험. 반드시 전용 수거함 이용. 대형 가전 무상수거: ☎1599-0903'
+  }
+];
+
+const searchDB = [];
+cats.forEach(c => {
+  c.ok.forEach(i => searchDB.push({name: i, catId: c.id, catName: c.name, color: c.color}));
+});
+
+/* ─── RENDER CATEGORY CARDS ─── */
+function renderCats() {
+  document.getElementById('cat-grid').innerHTML = cats.map(c => `
+    <div class="cat-card" onclick="showDetail('${c.id}')">
+      <div class="cat-stripe" style="background:${c.color}"></div>
+      <span class="cat-icon">${c.icon}</span>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-desc">${c.desc}</div>
+      <span class="cat-tag" style="background:${c.color}18;color:${c.color}">${c.tag}</span>
+    </div>
+  `).join('');
+}
+
+/* ─── SHOW DETAIL ─── */
+function showDetail(id, pushState = true) {
+  const c = cats.find(x => x.id === id);
+  if (!c) return;
+  document.getElementById('guide-main').style.display = 'none';
+  const dv = document.getElementById('detail-view');
+  dv.style.display = 'block';
+  if (pushState) {
+    history.pushState({ page: 'guide', detail: id }, c.name + ' · 분리배출 가이드', '#guide-' + id);
+    document.title = c.name + ' · 분리배출 가이드';
+  }
+
+  const stepsHtml = c.steps.map((s, i) => `
+    <div class="step-row">
+      <div class="step-num" style="background:${c.color}">${i + 1}</div>
+      <div class="step-text"><strong>${s.t}</strong> — ${s.d}</div>
+    </div>`).join('');
+
+  const okHtml = c.ok.map(i => `<div class="item-ok"><span class="mark">✓</span><span class="txt">${i}</span></div>`).join('');
+  const noHtml = c.no.map(i => `<div class="item-no"><span class="mark">✗</span><span class="txt">${i}</span></div>`).join('');
+
+  document.getElementById('detail-card-body').innerHTML = `
+    <div class="detail-header">
+      <span class="detail-icon">${c.icon}</span>
+      <div>
+        <div class="detail-title">${c.name}</div>
+        <div class="detail-subtitle">${c.desc}</div>
+      </div>
+      <button class="back-btn" onclick="showGuideMain()">← 목록으로</button>
+    </div>
+
+    <div class="section-label">배출 절차</div>
+    <div class="steps-list">${stepsHtml}</div>
+
+    <div class="items-sec-title" style="margin-bottom:6px">✓ 배출 가능 품목</div>
+    <div class="items-cols" style="margin-bottom:10px">${okHtml}</div>
+    <div class="items-sec-title" style="margin-bottom:6px">✗ 배출 불가 (주의!)</div>
+    <div class="items-cols" style="margin-bottom:1.25rem">${noHtml}</div>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠ 주의사항</div>
+      <div class="warn-text">${c.warn}</div>
+    </div>
+
+    <div class="section-label">관련 법령 및 규정</div>
+    <div class="law-box"><div class="law-text">${c.law}</div></div>
+  `;
+  dv.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ─── PAGE ROUTING (뒤로가기 지원) ─── */
+const PAGE_NAMES = { guide: '분리배출 안내', quiz: '퀴즈', chat: 'AI 챗봇' };
+
+function showPage(name, pushState = true) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if (!page) return;
+  page.classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    if (t.textContent.includes(name === 'guide' ? '안내' : name === 'quiz' ? '퀴즈' : 'AI')) {
+      t.classList.add('active');
+    }
+  });
+  if (pushState) {
+    history.pushState({ page: name }, PAGE_NAMES[name], '#' + name);
+    document.title = PAGE_NAMES[name] + ' · 분리배출 가이드';
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showGuideMain() {
+  document.getElementById('guide-main').style.display = '';
+  document.getElementById('detail-view').style.display = 'none';
+  history.pushState({ page: 'guide' }, PAGE_NAMES['guide'], '#guide');
+}
+
+window.addEventListener('popstate', (e) => {
+  const state = e.state;
+  const hash = location.hash;
+
+  // 상세 페이지 상태 복원
+  if (state && state.page === 'guide' && state.detail) {
+    showPage('guide', false);
+    showDetail(state.detail, false);
+    return;
+  }
+
+  // 해시로 상세 페이지 판별 (#guide-pet 등)
+  if (hash.startsWith('#guide-')) {
+    const id = hash.replace('#guide-', '');
+    showPage('guide', false);
+    showDetail(id, false);
+    return;
+  }
+
+  const name = (state && state.page) || getPageFromHash();
+  showPage(name, false);
+  if (name === 'guide') {
+    document.getElementById('guide-main').style.display = '';
+    document.getElementById('detail-view').style.display = 'none';
+    document.title = '분리배출 안내 · 분리배출 가이드';
+  }
+});
+
+function getPageFromHash() {
+  const h = location.hash.replace('#', '');
+  if (h.startsWith('guide-')) return 'guide';
+  return ['guide', 'quiz', 'chat'].includes(h) ? h : 'guide';
+}
+
+/* ─── SEARCH ─── */
+const navSearch = document.getElementById('nav-search');
+const searchDd = document.getElementById('search-dd');
+
+navSearch.addEventListener('input', function () {
+  const v = this.value.trim().toLowerCase();
+  if (!v) { searchDd.classList.remove('show'); return; }
+  const matches = searchDB.filter(d => d.name.toLowerCase().includes(v)).slice(0, 7);
+  if (!matches.length) { searchDd.classList.remove('show'); return; }
+  searchDd.innerHTML = matches.map(m => `
+    <div class="search-item" onclick="goToDetail('${m.catId}'); searchDd.classList.remove('show'); navSearch.value='${m.name}'">
+      <div class="search-dot" style="background:${m.color}"></div>
+      <span>${m.name}</span>
+      <span style="margin-left:auto;font-size:11px;color:#888">${m.catName}</span>
+    </div>`).join('');
+  searchDd.classList.add('show');
+});
+
+document.addEventListener('click', e => {
+  if (!searchDd.contains(e.target) && e.target !== navSearch) searchDd.classList.remove('show');
+});
+
+function goToDetail(id) {
+  showPage('guide');
+  setTimeout(() => showDetail(id), 50);
+}
+
+/* ─── QUIZ ─── */
+const ALL_QUIZZES = [
+  {q:'투명 생수병(페트병)을 버릴 때 올바른 방법은?', opts:['라벨 그대로 플라스틱류 수거함에','라벨 제거 → 압착 → 뚜껑 닫아 전용함에','비닐류 수거함에 같이','일반 종량제봉투에'], correct:1, fb:'라벨 제거 → 압착 → 뚜껑 닫기 → 전용 수거함 배출이 의무입니다. 2021년부터 전국 시행, 미준수 시 과태료 최대 30만원.'},
+  {q:'택배 박스를 종이류로 배출하기 전, 반드시 해야 할 일은?', opts:['물에 적시기','테이프·송장 스티커 제거 후 납작하게 접기','비닐봉투에 넣기','그대로 버리기'], correct:1, fb:'테이프, 송장 스티커가 붙어 있으면 재활용이 불가합니다. 반드시 제거 후 납작하게 해체해서 배출하세요.'},
+  {q:'우유팩은 어디에 버려야 할까요?', opts:['일반 종이류(폐지) 수거함','비닐류 수거함','종이팩 전용 수거함 (일반 종이와 구분!)','음식물쓰레기'], correct:2, fb:'우유팩·멸균팩은 일반 종이류와 혼합 배출 금지! 종이팩 전용 수거함에 따로 배출하세요. 2kg당 화장지 1롤로 교환도 가능해요.'},
+  {q:'부탄가스 캔을 버릴 때 올바른 방법은?', opts:['내용물이 남아도 캔류에','내용물 완전 소진 또는 야외에서 구멍 뚫은 후 캔류에','일반 종량제봉투에','분리배출 금지 품목'], correct:1, fb:'부탄가스는 반드시 내용물을 완전 소진하거나 야외에서 구멍을 뚫어 가스를 뺀 후 캔류로 배출해야 합니다. 내용물이 남으면 폭발 위험!'},
+  {q:'달걀 껍데기는 어디에 버려야 할까요?', opts:['음식물쓰레기','일반 종량제봉투','캔류','유리류'], correct:1, fb:'달걀 껍데기는 음식물쓰레기가 아닌 일반 종량제봉투입니다. 동물이 먹을 수 없는 뼈·씨앗·껍데기류는 모두 일반쓰레기예요.'},
+  {q:'깨진 유리컵은 어떻게 버려야 할까요?', opts:['유리류 수거함에 그대로','신문지에 싸서 종량제봉투에','음식물쓰레기에','비닐에 담아 재활용함에'], correct:1, fb:'깨진 유리는 신문지나 두꺼운 종이로 싸서 종량제봉투로 버려야 합니다. 유리류 수거함 투입 금지!'},
+  {q:'영수증(감열지)은 어디에 버려야 할까요?', opts:['종이류 재활용','일반 종량제봉투','비닐류','음식물쓰레기'], correct:1, fb:'영수증은 BPA 등 화학물질이 코팅된 감열지로, 종이류 재활용이 불가합니다. 반드시 종량제봉투에 버리세요.'},
+  {q:'기름에 심하게 젖은 피자 박스는?', opts:['종이류로 재활용','일반 종량제봉투','음식물쓰레기','비닐류'], correct:1, fb:'기름으로 오염된 종이는 재활용이 불가합니다. 깨끗한 부분만 잘라 종이류로 분리하고, 오염된 부분은 종량제봉투로 버리세요.'},
+  {q:'스티로폼 박스에 테이프가 붙어 있을 때는?', opts:['테이프째로 스티로폼 수거함에','테이프 제거 후 스티로폼 수거함에','일반쓰레기로','비닐류로'], correct:1, fb:'스티로폼은 테이프, 음식물 등 이물질을 모두 제거한 후 스티로폼 전용 수거함에 배출해야 합니다.'},
+  {q:'음식물 쓰레기의 올바른 처리 방법은?', opts:['물기 그대로 음식물 전용봉투에','물기 최대한 제거 후 음식물 전용봉투에','일반 종량제봉투에','비닐봉투에 넣어 재활용함에'], correct:1, fb:'음식물쓰레기는 물기를 최대한 제거해서 배출하면 무게가 줄어 처리 비용도 절감돼요. 전용봉투 또는 RFID 수거함에 배출하세요.'},
+  {q:'닭뼈, 생선 가시는 어디에 버려야 할까요?', opts:['음식물쓰레기','일반 종량제봉투','재활용 캔류','유리류'], correct:1, fb:'뼈와 가시는 음식물쓰레기가 아닌 일반쓰레기입니다. 살코기·내장은 음식물쓰레기지만, 딱딱한 뼈·가시는 퇴비화가 안 돼요.'},
+  {q:'복숭아씨, 망고씨 같은 딱딱한 씨앗은?', opts:['음식물쓰레기','일반 종량제봉투','플라스틱류','비닐류'], correct:1, fb:'딱딱한 씨앗(핵과)은 음식물 처리 기기에서 처리가 불가해 일반 종량제봉투에 버려야 합니다. 과육은 음식물쓰레기로 가능해요.'},
+  {q:'건전지·배터리는 어디에 버려야 할까요?', opts:['일반쓰레기','재활용 수거함에 혼합','마트·편의점·주민센터 폐전지 전용 수거함','음식물쓰레기'], correct:2, fb:'배터리·건전지는 화재·환경오염 위험으로 일반쓰레기나 재활용함 투입 절대 금지! 폐전지 전용 수거함에만 배출하세요.'},
+  {q:'형광등은 어떻게 버려야 할까요?', opts:['일반 재활용함에','종량제봉투에','폐형광등 전용 수거함에','음식물쓰레기에'], correct:2, fb:'형광등은 수은이 포함되어 있어 반드시 폐형광등 전용 수거함에 배출해야 합니다. 깨지지 않게 조심히 가져가세요.'},
+  {q:'소주병·맥주병을 재활용하는 가장 좋은 방법은?', opts:['유리류 수거함에','슈퍼·편의점에서 빈용기 보증금 환급','깨서 일반쓰레기로','비닐류에'], correct:1, fb:'소주병·맥주병은 빈용기 보증금 환급이 가능해요! 슈퍼·편의점에서 소주 100원, 맥주 130원을 돌려받을 수 있습니다.'},
+  {q:'도자기·사기 그릇은 어디에 버려야 할까요?', opts:['유리류 수거함','불연성 쓰레기','일반 종량제봉투','재활용 플라스틱류'], correct:1, fb:'도자기·사기 그릇은 유리류가 아닌 불연성 쓰레기입니다. 지자체별 불연성 쓰레기 전용 봉투나 수거일에 배출하세요.'},
+  {q:'물티슈·화장지는 어디에 버려야 할까요?', opts:['종이류 재활용','일반 종량제봉투','비닐류','음식물쓰레기'], correct:1, fb:'물티슈는 합성섬유가 혼합된 제품이라 종이류 재활용 불가입니다. 화장지와 함께 종량제봉투에 버리세요.'},
+  {q:'컵라면 용기(안쪽 코팅 포함)는?', opts:['종이류 재활용 가능','일반 종량제봉투','플라스틱류','비닐류'], correct:1, fb:'컵라면 용기 안쪽은 방수 코팅이 되어 있어 종이류 재활용이 불가합니다. 종량제봉투에 버리세요.'},
+  {q:'기름기가 심한 마요네즈 통, 깨끗이 씻지 못했다면?', opts:['플라스틱류로 재활용','종량제봉투에 버리기','음식물쓰레기','비닐류'], correct:1, fb:'세척이 어려운 오염된 용기는 종량제봉투에 버려야 합니다. 단, 깨끗이 씻고 말렸다면 플라스틱류로 재활용 가능해요.'},
+  {q:'택배 비닐봉투(송장 미제거 상태)는?', opts:['송장 제거 후에만 비닐류 가능','송장이 붙어 있어도 비닐류로 배출 가능','종이류','일반쓰레기'], correct:1, fb:'택배 비닐봉투는 송장을 굳이 제거하지 않아도 비닐류로 배출 가능합니다. 서울시 공식 안내에 따라 그대로 비닐류에 배출하세요.'},
+  {q:'랩(식품 포장 랩)은 어디에 버려야 할까요?', opts:['비닐류 수거함','일반 종량제봉투','플라스틱류','음식물쓰레기'], correct:1, fb:'랩은 비닐처럼 보이지만 종량제봉투에 버려야 합니다. 식탁보·고무장갑·고무호스·현수막도 마찬가지예요.'},
+  {q:'젤 타입 아이스팩(고흡수성 수지 포함)은?', opts:['비닐류','플라스틱류','일반 종량제봉투','음식물쓰레기'], correct:2, fb:'젤 타입 아이스팩은 재활용이 어렵습니다. 종량제봉투에 버리세요. 단, 물 아이스팩은 물을 싱크대에 버리고 비닐만 비닐류로 배출 가능해요.'},
+  {q:'스프링 노트를 버릴 때 올바른 방법은?', opts:['통째로 종이류에','금속 스프링 분리 후 → 종이는 종이류, 스프링은 캔류','통째로 금속류에','종량제봉투에'], correct:1, fb:'스프링 노트는 금속 스프링을 분리한 후, 종이 부분은 종이류, 금속 스프링은 캔류(고철)로 각각 배출하세요.'},
+  {q:'대형 가전(냉장고, 세탁기 등)은 어떻게 버려야 할까요?', opts:['일반 종량제봉투','재활용 수거함 앞에 그냥 두기','대형폐가전 무상방문수거 서비스 신청 (☎1599-0903)','동사무소에 가져가기'], correct:2, fb:'1m 이상 대형 가전은 대형폐가전 무상방문수거 서비스를 이용하세요. ☎1599-0903 또는 www.15990903.or.kr 에서 신청 가능합니다.'},
+  {q:'헌옷·의류는 어디에 버려야 할까요?', opts:['일반 종량제봉투','재활용 수거함에 혼합','아파트 단지 내 의류 수거함','음식물쓰레기'], correct:2, fb:'헌옷·의류는 동네 의류 수거함에 배출하세요. 단, 솜이불은 의류 수거함 불가로, 대형폐기물로 신고 후 수수료를 납부하고 배출해야 합니다.'},
+  {q:'뽁뽁이(에어캡 완충재)는 어디에 버려야 할까요?', opts:['플라스틱류','비닐류 수거함','종이류','일반 종량제봉투'], correct:1, fb:'뽁뽁이(에어캡)는 비닐류로, 이물질 제거 후 투명·반투명 봉투에 모아 비닐류 수거함에 배출하세요.'},
+  {q:'알루미늄 호일은 어디에 버려야 할까요?', opts:['비닐류','종이류','구겨서 캔류(고철)','일반 종량제봉투'], correct:2, fb:'알루미늄 호일은 구겨서 캔류(고철)로 배출하세요. 음식물이 묻었다면 깨끗이 씻거나 종량제봉투에 버리세요.'},
+  {q:'종이컵은 어디에 버려야 할까요?', opts:['일반 종이류 수거함','종이팩 전용 수거함 (헹굼 후)','비닐류','일반 종량제봉투'], correct:1, fb:'종이컵은 물로 헹군 후 종이팩 전용 수거함에 배출하세요. 일반 종이류와 혼합 배출하면 안 됩니다.'},
+  {q:'플라스틱 배달 용기(기름기 있음), 어떻게 해야 할까요?', opts:['그냥 플라스틱류로','기름기 제거 후 플라스틱류로','음식물쓰레기로','비닐류로'], correct:1, fb:'배달 용기는 기름때를 깨끗이 제거한 후 플라스틱류로 배출해야 합니다. 뜨거운 물에 베이킹파우더를 넣어 세척하면 효과적이에요.'},
+  {q:'분리배출 4대 원칙 중 올바른 것은?', opts:['모으고, 태우고, 묻고, 줄인다','비운다, 헹군다, 분리한다, 섞지 않는다','씻고, 접고, 모으고, 버린다','색깔별로, 크기별로, 재질별로, 날짜별로'], correct:1, fb:'분리배출 4대 원칙: ① 비운다 ② 헹군다 ③ 분리한다 ④ 섞지 않는다. 이 순서만 기억해도 올바른 분리배출이 가능해요!'},
+  {q:'투명 페트병을 일반 플라스틱과 혼합 배출하면?', opts:['상관없다','과태료 최대 30만원 부과 가능','수거 거부만 됨','무방하다'], correct:1, fb:'투명 페트병 별도 분리배출은 2021년부터 의무화되어, 미준수 시 폐기물관리법에 따라 최대 30만원의 과태료가 부과될 수 있습니다.'},
+];
+
+const QUIZ_PER_ROUND = 10;
+let roundQuizzes = [], qIdx = 0, qAnswered = false, qScore = 0;
+let wrongList = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz() {
+  roundQuizzes = shuffle(ALL_QUIZZES).slice(0, QUIZ_PER_ROUND);
+  qIdx = 0; qScore = 0; qAnswered = false; wrongList = [];
+  document.getElementById('quiz-playing').style.display = '';
+  document.getElementById('quiz-result').style.display = 'none';
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const q = roundQuizzes[qIdx];
+  const total = roundQuizzes.length;
+  document.getElementById('quiz-counter').textContent = `문제 ${qIdx + 1} / ${total}`;
+  document.getElementById('quiz-score-live').textContent = `맞춤: ${qScore}`;
+  document.getElementById('quiz-progress-fill').style.width = `${(qIdx / total) * 100}%`;
+  document.getElementById('quiz-q').textContent = q.q;
+  document.getElementById('quiz-opts').innerHTML = q.opts.map((o, i) =>
+    `<button class="q-opt" onclick="answerQuiz(${i})">${o}</button>`).join('');
+  const fb = document.getElementById('quiz-fb');
+  fb.className = 'q-fb'; fb.textContent = '';
+  document.getElementById('quiz-next').classList.remove('show');
+  qAnswered = false;
+}
+
+function answerQuiz(i) {
+  if (qAnswered) return;
+  qAnswered = true;
+  const q = roundQuizzes[qIdx];
+  const ok = i === q.correct;
+  document.querySelectorAll('.q-opt')[q.correct].classList.add('correct');
+  if (!ok) {
+    document.querySelectorAll('.q-opt')[i].classList.add('wrong');
+    wrongList.push({q: q.q, yourAns: q.opts[i], rightAns: q.opts[q.correct], fb: q.fb});
+  }
+  if (ok) qScore++;
+  document.getElementById('quiz-score-live').textContent = `맞춤: ${qScore}`;
+  const fb = document.getElementById('quiz-fb');
+  fb.textContent = (ok ? '✓ 정답! ' : '✗ 오답. ') + q.fb;
+  fb.className = 'q-fb show ' + (ok ? 'ok' : 'no');
+  const isLast = qIdx === roundQuizzes.length - 1;
+  const nextBtn = document.getElementById('quiz-next');
+  nextBtn.textContent = isLast ? '결과 보기 →' : '다음 문제 →';
+  nextBtn.classList.add('show');
+}
+
+document.getElementById('quiz-next').addEventListener('click', () => {
+  if (qIdx < roundQuizzes.length - 1) {
+    qIdx++;
+    renderQuiz();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  document.getElementById('quiz-playing').style.display = 'none';
+  document.getElementById('quiz-result').style.display = '';
+  const total = roundQuizzes.length;
+  const pct = Math.round((qScore / total) * 100);
+  const wrongCount = total - qScore;
+
+  let emoji, title, sub;
+  if (pct === 100)      { emoji='🏆'; title='완벽해요! 분리배출 마스터!'; sub='모든 문제를 맞췄어요. 정말 대단합니다! 주변 사람들에게도 알려주세요 🌿'; }
+  else if (pct >= 80)   { emoji='🎉'; title='훌륭해요! 거의 다 맞췄어요'; sub='조금만 더 공부하면 완벽해질 거예요. 틀린 문제를 확인해보세요!'; }
+  else if (pct >= 60)   { emoji='👍'; title='절반 이상 맞췄어요!'; sub='나쁘지 않아요! 하지만 아직 헷갈리는 부분이 있네요. 틀린 문제를 꼭 확인해보세요.'; }
+  else if (pct >= 40)   { emoji='📚'; title='더 공부가 필요해요'; sub='분리배출이 생각보다 복잡하죠? 틀린 문제를 복습하고 다시 도전해보세요!'; }
+  else                  { emoji='💪'; title='다시 도전해봐요!'; sub='분리배출 규정을 좀 더 공부해봐요. 가이드를 먼저 읽고 다시 퀴즈를 풀어보세요!'; }
+
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-sub').textContent = sub;
+
+  document.getElementById('result-stats').innerHTML = `
+    <div style="background:var(--green-ghost);border-radius:var(--radius-md);padding:.9rem .5rem;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--green-dark)">${qScore}</div>
+      <div style="font-size:.75rem;color:var(--green-mid);margin-top:3px">정답</div>
+    </div>
+    <div style="background:var(--red-light);border-radius:var(--radius-md);padding:.9rem .5rem;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--red)">${wrongCount}</div>
+      <div style="font-size:.75rem;color:var(--red);margin-top:3px">오답</div>
+    </div>
+    <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-md);padding:.9rem .5rem;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--text-primary)">${pct}%</div>
+      <div style="font-size:.75rem;color:var(--text-muted);margin-top:3px">정답률</div>
+    </div>
+  `;
+
+  const reviewEl = document.getElementById('result-review');
+  if (wrongList.length === 0) {
+    reviewEl.innerHTML = '<div style="text-align:center;padding:.75rem;font-size:.85rem;color:var(--green-mid)">🎊 틀린 문제가 없어요!</div>';
+  } else {
+    reviewEl.innerHTML = `
+      <div style="font-size:.72rem;font-weight:500;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:.75rem">틀린 문제 복습</div>
+      ${wrongList.map((w, i) => `
+        <div style="background:var(--bg);border-radius:var(--radius-md);padding:1rem;margin-bottom:8px;border-left:3px solid var(--red);border-radius:0 var(--radius-md) var(--radius-md) 0">
+          <div style="font-size:13px;font-weight:500;margin-bottom:.5rem;line-height:1.5">${i+1}. ${w.q}</div>
+          <div style="font-size:12px;color:var(--red);margin-bottom:3px">내 답: ${w.yourAns}</div>
+          <div style="font-size:12px;color:var(--green-mid);margin-bottom:.5rem">정답: ${w.rightAns}</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;background:var(--surface);padding:7px 10px;border-radius:var(--radius-sm)">${w.fb}</div>
+        </div>`).join('')}
+    `;
+  }
+
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+}
+
+function restartQuiz() {
+  startQuiz();
+}
+
+/* ─── CHATBOT (규칙 기반) ─── */
+const chatDB = [
+  {
+    keys: ['치킨','피자','기름','튀김','배달','음식물 묻','오염된 종이','박스','상자'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '기름이나 음식물에 젖은 종이·박스는 재활용이 불가합니다. 종이 섬유가 오염되면 재활용 공정에서 불량 원인이 돼요.\n\n깨끗한 부분이 있다면 오염된 부분만 잘라내고 나머지는 종이류로 분리할 수 있어요. 오염이 심하면 통째로 종량제봉투에 버리세요.'
+  },
+  {
+    keys: ['영수증','감열지','코팅 종이','코팅된'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '영수증(감열지)은 일반 종이와 달리 BPA 등 화학물질이 코팅되어 있어 종이류 재활용이 불가합니다.\n\n반드시 종량제봉투에 버려야 해요. 일반 영수증뿐 아니라 복권·항공권·주차권 등 코팅된 종이도 동일합니다.'
+  },
+  {
+    keys: ['테이프','박스 테이프','택배'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '택배 박스는 테이프·송장 스티커를 모두 제거한 후 종이류로 배출해야 합니다.\n\n테이프가 붙은 채로 버리면 재활용이 불가하니, 반드시 제거 후 납작하게 접어서 배출하세요. 스티로폼에 테이프가 붙어 있어도 동일하게 제거 후 배출하세요.'
+  },
+  {
+    keys: ['스티로폼','뽁뽁이','에어캡','완충재'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '스티로폼은 이물질(테이프, 음식물 등)을 완전히 제거한 후 스티로폼 전용 수거함 또는 묶어서 별도 배출합니다.\n\n뽁뽁이(에어캡)는 비닐류로, 투명 봉투에 모아서 배출하세요. 음식물이 묻은 경우 깨끗이 씻거나 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['비닐','봉투','랩','지퍼백','과자 봉지','라면 봉지'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '비닐류는 이물질을 물로 헹궈 제거한 후 투명·반투명 봉투에 모아 비닐류 수거함에 배출하세요.\n\n단, 랩·식탁보·고무장갑·현수막은 비닐처럼 보여도 종량제봉투입니다. 음식물 제거가 어려운 비닐도 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['페트병','생수병','음료수병','투명 페트','라벨'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '투명 페트병은 ① 내용물 비우기 → ② 라벨 제거 (라벨은 비닐류로 별도 배출) → ③ 압착 후 뚜껑 닫기 → ④ 전용 수거함에 배출 순서로 처리하세요.\n\n2021년부터 전국 의무화로, 일반 플라스틱과 혼합 배출하면 과태료(최대 30만원)가 부과될 수 있어요.'
+  },
+  {
+    keys: ['뚜껑','캡','페트 뚜껑','병 뚜껑'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '페트병 플라스틱 뚜껑은 압착 후 뚜껑을 닫아서 투명 페트병 전용함에 같이 배출해도 됩니다.\n\n재활용 과정에서 뚜껑(PE·PP)과 몸체(PET)는 비중 차이로 세척 시 자동 분리돼요. 금속 뚜껑이면 제거 후 캔류로 배출하세요.'
+  },
+  {
+    keys: ['우유팩','멸균팩','종이팩','주스팩','두유팩'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '우유팩·멸균팩은 일반 종이류와 혼합 배출 금지입니다! 내용물을 비우고 물로 헹군 후 펼쳐서 말린 다음, 종이팩 전용 수거함에 별도 배출하세요.\n\n2kg(약 40개)을 모으면 주민센터·마트에서 화장지 1롤로 교환할 수 있어요. 일반팩과 멸균팩도 서로 구분해서 배출하세요.'
+  },
+  {
+    keys: ['달걀','계란','껍데기','조개','홍합','굴','새우 껍질'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '달걀·조개·새우 등 껍데기류는 음식물쓰레기가 아닌 일반 종량제봉투로 버려야 합니다.\n\n기준은 "동물이 먹을 수 있는가"입니다. 껍데기·뼈·씨앗처럼 동물도 먹을 수 없는 것은 모두 일반쓰레기예요.'
+  },
+  {
+    keys: ['뼈','갈비뼈','생선 가시','가시','닭뼈'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '뼈·생선 가시류는 음식물쓰레기가 아닌 일반 종량제봉투에 버려야 합니다.\n\n살코기·내장은 음식물쓰레기지만, 딱딱한 뼈와 가시는 퇴비화가 되지 않아 일반쓰레기로 분류돼요.'
+  },
+  {
+    keys: ['씨앗','복숭아씨','망고씨','아보카도','핵과'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '복숭아·자두·망고·아보카도 등의 딱딱한 씨앗(핵)은 음식물쓰레기가 아닌 일반 종량제봉투에 버려야 합니다.\n\n과육은 음식물쓰레기로 가능하지만, 딱딱한 씨앗은 음식물 처리 기기나 퇴비화 과정에서 처리가 불가해요.'
+  },
+  {
+    keys: ['깨진 유리','유리 깨','깨진 컵','유리 조각'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '깨진 유리는 유리류 수거함이 아닌 일반 종량제봉투에 버려야 합니다.\n\n안전을 위해 반드시 신문지나 두꺼운 종이·천으로 꼼꼼히 싸서 "깨진 유리"라고 표시한 후 종량제봉투에 넣으세요. 도자기·사기 그릇도 깨진 것은 동일하게 처리하세요.'
+  },
+  {
+    keys: ['도자기','그릇','사기','내열 유리','파이렉스','뚝배기'],
+    verdict: '불연성 쓰레기',
+    vclass: 'v-special',
+    reply: '도자기·사기·내열 유리(파이렉스)·뚝배기 등은 유리류가 아닌 불연성 쓰레기로 버려야 합니다.\n\n지자체별로 불연성 쓰레기 전용 봉투나 마대에 담아 배출하거나, 지정된 불연성 쓰레기 수거일에 배출하세요.'
+  },
+  {
+    keys: ['부탄가스','가스캔','에어로졸','살충제','스프레이'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '부탄가스·에어로졸 캔은 반드시 내용물을 완전히 소진한 후, 야외에서 구멍을 뚫어 잔여 가스를 제거하고 캔류로 배출하세요.\n\n내용물이 남아 있는 상태로 버리면 수거 차량 화재·폭발 사고 위험이 있습니다. 절대 불 근처에서 구멍을 뚫지 마세요!'
+  },
+  {
+    keys: ['배터리','건전지','리튬','충전지','보조배터리'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '배터리·건전지류는 일반쓰레기나 재활용함에 절대 넣으면 안 됩니다. 화재·환경오염 위험이 있어요.\n\n마트·편의점·주민센터에 설치된 폐전지 전용 수거함에 배출하세요. 전기차·하이브리드 배터리는 제조사나 지자체에 별도 문의하세요.'
+  },
+  {
+    keys: ['형광등','LED','백열전구','전구'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '형광등·LED·전구는 일반쓰레기나 재활용함에 넣으면 안 됩니다.\n\n아파트 단지 내 또는 주민센터·마트의 폐형광등 전용 수거함에 배출하세요. 깨지지 않게 조심히 가져가시고, 깨진 형광등은 신문지로 싸서 별도로 처리하세요.'
+  },
+  {
+    keys: ['소형 가전','드라이기','드라이어','믹서기','전자레인지','선풍기','소형'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '1m 미만 소형 가전은 재활용품 배출 시 함께 내놓거나, 아파트 단지 내 소형 가전 전용 수거함·주민센터에 배출하세요.\n\n1m 이상 대형 가전(냉장고·세탁기·TV 등)은 대형폐가전 무상방문수거 서비스를 이용하세요. 신청: ☎ 1599-0903'
+  },
+  {
+    keys: ['휴대폰','핸드폰','스마트폰','태블릿'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '휴대폰·태블릿은 통신사 대리점, 주민센터, 아파트 소형 가전 수거함에 배출하세요.\n\n개인정보 보호를 위해 반드시 초기화 후 배출하세요. 배터리는 별도로 분리해 폐전지 수거함에 넣는 것이 좋아요.'
+  },
+  {
+    keys: ['헌옷','의류','옷','신발','가방'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '헌옷·의류·신발은 아파트 단지 또는 동네 곳곳에 설치된 의류 수거함에 배출하세요.\n\n솜이불은 의류 수거함 불가로, 대형폐기물로 신고 후 수수료를 납부하고 배출해야 합니다. 가방도 재질에 따라 의류 수거함 또는 대형폐기물로 처리하세요.'
+  },
+  {
+    keys: ['물티슈','화장지','휴지','기저귀','생리대','마스크'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '물티슈·화장지·기저귀·생리대·마스크는 재활용이 불가합니다. 모두 종량제봉투에 버리세요.\n\n물티슈는 종이처럼 보이지만 합성섬유(폴리에스터 등)가 혼합된 제품이라 종이류 재활용 불가예요. 사용한 마스크는 안쪽이 보이지 않게 접어서 버리세요.'
+  },
+  {
+    keys: ['컵라면','컵라면 용기','코팅','안쪽'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '컵라면 용기 안쪽은 방수 코팅이 되어 있어 종이류 재활용이 불가합니다. 종량제봉투에 버리세요.\n\n겉면 종이 포장지도 코팅된 경우가 많아 종이류보다는 종량제봉투가 안전해요. 플라스틱 뚜껑이 있다면 플라스틱류로 따로 분리하세요.'
+  },
+  {
+    keys: ['종이컵','커피컵'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '종이컵은 물로 헹군 후 종이팩 전용 수거함에 별도 배출하세요. 일반 종이류와 혼합하면 안 됩니다.\n\n단, 음식물이 많이 묻어 세척이 어렵거나 코팅이 심한 일회용 컵은 종량제봉투로 버리는 게 맞아요.'
+  },
+  {
+    keys: ['마요네즈','케첩','기름통','소스통'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '마요네즈·케첩·기름통처럼 세척이 어려운 플라스틱 용기는, 깨끗이 씻고 말렸을 경우 플라스틱류로 재활용 가능합니다.\n\n세척이 어렵다면 종량제봉투로 버리세요. 기름기 제거 팁: 뜨거운 물에 베이킹파우더를 넣어 담가두면 효과적이에요.'
+  },
+  {
+    keys: ['아이스팩','젤 아이스팩','아이스 팩'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '젤 타입 아이스팩(고흡수성 수지 포함)은 재활용이 어려워 종량제봉투로 버려야 합니다.\n\n단, 물이 들어 있는 아이스팩은 물을 싱크대에 버리고 비닐 봉투 부분만 비닐류로 분리배출 가능해요. 성분 표시를 꼭 확인하세요!'
+  },
+  {
+    keys: ['스프링 노트','스프링','금속 스프링','클립'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '스프링 노트는 금속 스프링을 분리한 후, 종이 부분은 종이류로, 금속 스프링은 캔류(고철)로 각각 배출하세요.\n\n혼합된 상태로는 어느 쪽도 재활용이 어려우니, 분리 후 배출하는 것이 중요해요.'
+  },
+  {
+    keys: ['소주병','맥주병','빈병','보증금'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '소주병·맥주병은 슈퍼마켓·편의점·마트에서 빈용기 보증금을 환급받을 수 있어요. (소주 100원, 맥주 130원)\n\n환급을 원하지 않으면 유리류 수거함에 배출하세요. 내용물을 비우고 헹군 후, 금속 뚜껑은 캔류로 따로 분리하세요.'
+  },
+  {
+    keys: ['페인트','페인트통','오일','기름캔','화학물질'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '페인트·오일·화학약품 용기는 내용물이 오염되어 있어 일반 재활용이 불가합니다. 종량제봉투에 버리세요.\n\n소량의 페인트라면 신문지·헝겊에 흡수시켜 굳힌 후 종량제봉투에 배출하세요. 대량이라면 지자체 유해폐기물 수거 서비스를 이용하세요.'
+  },
+  {
+    keys: ['안경','안경테','선글라스'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '안경·선글라스는 금속·플라스틱·렌즈 등 여러 재질이 결합되어 있어 일반 재활용이 어렵습니다.\n\n사용 가능한 안경은 사회복지단체·안경원 기부함에 기증할 수 있어요. 재활용 불가한 경우에는 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['칫솔','면도기','일회용'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '칫솔·면도기 등 소형 일회용 위생용품은 혼합 재질로 되어 있어 일반 재활용이 어렵습니다. 종량제봉투로 버리세요.\n\n일부 브랜드는 칫솔 수거·재활용 캠페인을 운영하기도 하니 브랜드 공식 채널을 확인해 보세요.'
+  },
+
+  /* ── 장난감·완구 ── */
+  {
+    keys: ['장난감','레고','블록','피규어','인형','봉제인형','플라스틱 장난감'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '장난감·완구류는 플라스틱·금속·직물 등 혼합 재질이라 일반 재활용이 어렵습니다. 종량제봉투에 버리세요.\n\n레고 등 상태 좋은 완구는 아름다운가게·중고나눔 플랫폼에 기부하거나, 레고코리아 공식 회수 프로그램을 이용할 수 있어요. 전자 기능이 있는 장난감은 배터리 먼저 분리하세요.'
+  },
+  {
+    keys: ['전자 장난감','배터리 장난감','RC카','드론'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '배터리가 내장된 전자 장난감(RC카, 전동 완구, 드론 등)은 배터리를 분리한 후 처리하세요.\n\n배터리는 폐전지 전용 수거함에, 배터리 없는 본체는 소형 가전류 수거함 또는 종량제봉투에 버리세요. 리튬 배터리가 내장돼 분리 불가하면 소형 가전 수거함에 통째로 배출하세요.'
+  },
+
+  /* ── 생활용품 ── */
+  {
+    keys: ['우산','양우산','파라솔'],
+    verdict: '일반쓰레기(종량제봉투) 또는 대형폐기물',
+    vclass: 'v-general',
+    reply: '우산은 금속 살대·플라스틱 손잡이·직물이 혼합된 제품으로 일반 재활용이 어렵습니다.\n\n접는 우산(소형)은 종량제봉투, 장우산(대형)은 대형폐기물로 신고 후 배출하세요. 우산 천은 잘라서 직물로 처리, 금속 살대는 캔류(고철)로 분리 가능해요.'
+  },
+  {
+    keys: ['고무장갑','고무','실리콘'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '고무장갑·실리콘 제품은 비닐류가 아닌 종량제봉투에 버려야 합니다.\n\n고무·실리콘은 재활용 공정에서 처리가 어려운 소재예요. 고무호스·고무밴드·실리콘 주방용품도 모두 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['화장품','립스틱','아이섀도','파운데이션','마스카라','화장품 용기'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '화장품 용기는 재질에 따라 다릅니다. 플라스틱 용기는 깨끗이 씻어 플라스틱류로, 유리 용기는 유리류로 분리 배출하세요.\n\n립스틱·마스카라 등 내용물이 남은 채 씻기 어려운 용기는 종량제봉투로 버리세요. 아모레퍼시픽·LG생활건강 등 일부 브랜드는 공병 수거 캠페인을 운영해요.'
+  },
+  {
+    keys: ['샴푸통','바디워시','세제통','린스'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '샴푸·바디워시·세제통은 내용물을 완전히 비우고 물로 헹군 후 플라스틱류로 배출하세요.\n\n펌프 헤드 부분이 금속이면 분리해서 캔류로 버리세요. 내용물이 남아 세척이 어렵다면 종량제봉투로 버리는 것이 맞아요.'
+  },
+  {
+    keys: ['치약','치약 튜브','튜브'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '치약 튜브는 내부에 내용물이 완전히 제거되지 않고 혼합 재질(플라스틱+알루미늄)인 경우가 많아 일반 재활용이 어렵습니다. 종량제봉투에 버리세요.\n\n단, 재질 표시가 순수 플라스틱(PE 등)이고 깨끗이 짜낸 경우라면 플라스틱류로 배출 가능해요.'
+  },
+  {
+    keys: ['면도날','커터날','날','칼날'],
+    verdict: '일반쓰레기(종량제봉투)',
+    vclass: 'v-general',
+    reply: '면도날·커터날 등 날카로운 금속은 캔류가 아닌 종량제봉투에 버려야 합니다.\n\n반드시 신문지나 두꺼운 테이프로 감싸 날을 보호한 후 "날카로운 물건"이라고 표시해서 버리세요. 수거 작업자의 안전을 위해 꼭 지켜주세요.'
+  },
+  {
+    keys: ['운동화','신발','구두','슬리퍼'],
+    verdict: '특수배출(의류수거함)',
+    vclass: 'v-special',
+    reply: '신발·운동화는 의류 수거함에 배출하거나, 상태가 좋으면 아름다운가게 등에 기증할 수 있어요.\n\n단, 고무·스펀지 소재 슬리퍼나 낡은 신발은 의류 수거함 거부 대상이 될 수 있으니 종량제봉투로 버리세요. 신발장에서 오래 방치된 신발은 대형폐기물 처리가 필요할 수 있어요.'
+  },
+  {
+    keys: ['가방','백팩','핸드백','지갑'],
+    verdict: '특수배출(의류수거함)',
+    vclass: 'v-special',
+    reply: '가방·지갑류는 사용 가능한 상태라면 의류 수거함 또는 아름다운가게·중고 플랫폼에 기부하세요.\n\n재활용 불가 상태의 가방은 재질에 따라 다르며, 플라스틱 부품은 분리 후 플라스틱류로, 나머지 직물·가죽 부분은 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['책','잡지','만화책','교과서','노트'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '책·잡지·교과서는 종이류로 배출하세요. 하드커버 책의 경우 딱딱한 표지(보드)는 종이류, 안쪽 내지는 종이류로 함께 배출 가능해요.\n\n단, 상태가 좋은 책은 아름다운가게·도서관 기증, 중고 거래 플랫폼 활용을 먼저 고려해보세요! 비닐 커버는 비닐류로 분리하세요.'
+  },
+  {
+    keys: ['우유병','유리 우유병','유리병'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '유리 우유병은 내용물을 비우고 헹군 후 유리류 수거함에 배출하세요.\n\n뚜껑이 금속이라면 캔류로, 플라스틱이라면 플라스틱류로 분리해서 버리세요.'
+  },
+  {
+    keys: ['프린터 잉크','토너','카트리지','잉크'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '잉크 카트리지·토너는 잉크 성분이 환경오염 유발 우려가 있어 일반 재활용함에 버리면 안 됩니다.\n\n대형마트·편의점·주민센터의 카트리지 전용 수거함에 배출하거나, 제조사(HP·삼성·캐논 등) 공식 회수 프로그램을 이용하세요. 잉크가 새지 않게 밀봉해서 가져가세요.'
+  },
+  {
+    keys: ['전선','케이블','충전기','이어폰','코드'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '전선·케이블·충전기·이어폰 등 전자 액세서리는 소형 가전류로 분류됩니다.\n\n주민센터·아파트 소형 가전 수거함 또는 재활용품 배출 시 함께 내놓으세요. 케이블 길이가 길면 감아서 묶어 배출하세요. 일반쓰레기나 재활용함에 혼합 배출하지 마세요.'
+  },
+  {
+    keys: ['냄비','프라이팬','솥','주방도구','후라이팬'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '냄비·프라이팬 등 금속 주방도구는 캔류(고철)로 배출하세요. 손잡이가 나무·플라스틱이면 분리 가능한 경우 각각 해당 재질로 배출하세요.\n\n테플론 코팅 프라이팬은 코팅이 벗겨져도 캔류(고철)로 배출 가능해요. 단, 크기가 크면 대형폐기물로 신고가 필요할 수 있어요.'
+  },
+  {
+    keys: ['우산꽂이','금속 제품','철사','못','나사','볼트'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '못·나사·볼트·철사 등 소형 금속류는 캔류(고철)로 배출하세요.\n\n날카로운 것은 반드시 종이나 테이프로 감싸 안전하게 배출하세요. 소량이라면 캔에 담아서 배출하면 더 안전해요.'
+  },
+  {
+    keys: ['자전거','킥보드','유모차','카시트'],
+    verdict: '대형폐기물',
+    vclass: 'v-special',
+    reply: '자전거·킥보드·유모차·카시트 등 대형 제품은 대형폐기물로 신고 후 수수료를 납부하고 배출해야 합니다.\n\n지자체 홈페이지 또는 앱(빼기 등)에서 대형폐기물 신고 후 스티커를 붙여 배출하세요. 상태가 좋다면 아름다운가게·중고나눔 플랫폼을 먼저 이용해보세요.'
+  },
+  {
+    keys: ['플라스틱 의자','플라스틱 가구','수납함','바구니'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '소형 플라스틱 수납함·바구니 등은 재질(PP, PE 등) 확인 후 플라스틱류로 배출할 수 있어요.\n\n단, 크기가 크거나 금속이 결합된 제품은 대형폐기물로 신고 후 배출하세요. 재활용 마크와 재질 표시를 꼭 확인하세요.'
+  },
+  {
+    keys: ['신문지','전단지','광고지','종이'],
+    verdict: '재활용 가능',
+    vclass: 'v-recycle',
+    reply: '신문지·전단지·광고지는 종이류로 배출하세요. 물기에 젖지 않게 묶거나 박스에 담아서 배출하면 됩니다.\n\n단, 방수 코팅된 광고지(광택 있는 전단지)는 재활용이 어려울 수 있어요. 일반 종이와 섞어도 되지만 코팅 여부가 의심되면 종량제봉투로 버리세요.'
+  },
+  {
+    keys: ['수건','담요','이불','베개'],
+    verdict: '특수배출(의류수거함) 또는 대형폐기물',
+    vclass: 'v-special',
+    reply: '수건·얇은 담요는 의류 수거함에 배출할 수 있어요. 상태가 좋으면 기부도 가능해요.\n\n솜이불·두꺼운 이불·베개는 의류 수거함 불가로, 반드시 대형폐기물로 신고 후 수수료를 납부하고 배출해야 합니다.'
+  },
+  {
+    keys: ['냉장고','세탁기','TV','에어컨','텔레비전'],
+    verdict: '특수배출(무상방문수거)',
+    vclass: 'v-special',
+    reply: '냉장고·세탁기·TV·에어컨 등 1m 이상 대형 가전은 대형폐가전 무상방문수거 서비스를 이용하세요.\n\n☎ 1599-0903 또는 www.15990903.or.kr 에서 신청 가능합니다. 완전 무료이며 방문 수거해 드려요.'
+  },
+  {
+    keys: ['콘센트','멀티탭','스위치','전기 부품'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '멀티탭·콘센트 등 전기 부품은 소형 가전류로 분류됩니다.\n\n주민센터·아파트 소형 가전 수거함에 배출하거나, 재활용품 배출 시 함께 내놓으세요. 금속 부품이 포함되어 있으니 일반쓰레기나 재활용함에 혼합 배출하지 마세요.'
+  },
+  {
+    keys: ['약','약봉지','약통','의약품'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '약·의약품은 일반쓰레기나 재활용함에 버리면 안 됩니다. 환경오염 및 오남용 위험이 있어요.\n\n가까운 약국 또는 보건소의 폐의약품 전용 수거함에 배출하세요. 약봉지·약통(플라스틱)은 약을 완전히 비운 후 플라스틱류로 배출 가능해요.'
+  },
+  {
+    keys: ['화분','흙','토분','플라스틱 화분'],
+    verdict: '조건부 재활용 가능',
+    vclass: 'v-recycle',
+    reply: '플라스틱 화분은 흙을 완전히 제거한 후 플라스틱류로 배출하세요. 토분(도자기·도기 재질)은 불연성 쓰레기로 버려야 합니다.\n\n흙은 일반쓰레기로 버리거나, 소량이라면 화단에 버려도 돼요. 화분이 크면 대형폐기물 신고가 필요할 수 있어요.'
+  },
+  {
+    keys: ['건전지','수은 건전지','버튼형 배터리'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '건전지·버튼형 배터리는 수은 등 유해물질이 포함되어 일반쓰레기 절대 금지입니다.\n\n마트·편의점·주민센터에 설치된 폐전지 전용 수거함에 배출하세요. 버튼형 배터리(시계·리모컨용)도 동일하게 폐전지 수거함에 버리세요.'
+  },
+  {
+    keys: ['키보드','마우스','컴퓨터','모니터','노트북'],
+    verdict: '특수배출',
+    vclass: 'v-special',
+    reply: '키보드·마우스 등 소형 컴퓨터 주변기기는 소형 가전류로, 주민센터·아파트 소형 가전 수거함에 배출하세요.\n\n노트북·모니터 등 1m 미만 제품도 소형 가전 수거함 이용 가능해요. 개인정보 보호를 위해 반드시 데이터 삭제 후 배출하세요.'
+  },
+  {
+    keys: ['종량제','종량제 봉투','쓰레기봉투'],
+    verdict: null,
+    vclass: null,
+    reply: '종량제봉투는 주민센터·편의점·마트에서 구매할 수 있어요. 지자체별로 봉투 디자인과 가격이 다릅니다.\n\n일반쓰레기(재활용 불가 + 음식물 아닌 것)는 종량제봉투에 버리세요. 재활용 가능 품목을 종량제봉투에 버리면 과태료 대상이 될 수 있어요!'
+  },
+];
+
+const fallbackReplies = [
+  '정확한 답변을 드리기 어렵네요. 좀 더 구체적으로 품목명을 말씀해 주시면 더 잘 도와드릴 수 있어요!\n\n예시: "기름 묻은 피자 박스", "투명 페트병 뚜껑", "깨진 유리컵"',
+  '해당 품목에 대한 정보가 없어요. 품목명을 더 구체적으로 입력해 주세요.\n\n기본 원칙: 재활용 마크가 있고 깨끗한 것 → 재활용, 오염되었거나 혼합 재질 → 종량제봉투!',
+  '죄송해요, 정확한 정보를 찾지 못했어요. "내 손안의 분리배출" 앱(환경부 공식)에서 검색해 보시면 더 정확한 정보를 얻을 수 있어요!',
+];
+let fallbackIdx = 0;
+
+const messagesEl = document.getElementById('messages');
+
+function getBotReply(input) {
+  const q = input.toLowerCase().replace(/\s/g, '');
+  for (const entry of chatDB) {
+    if (entry.keys.some(k => q.includes(k.replace(/\s/g,'')) || input.includes(k))) {
+      return entry;
+    }
+  }
+  return null;
+}
+
+function addInitialMessage() {
+  addBotMessage({
+    verdict: null,
+    reply: '안녕하세요! 분리배출이 헷갈릴 때 바로 물어보세요 😊\n\n음식물이 묻었거나, 재질이 애매하거나, 어디에 버려야 할지 모르는 것들을 질문하시면 대한민국 공식 기준에 맞춰 안내해 드릴게요!\n\n예: "기름 묻은 치킨 박스", "투명 페트병 뚜껑", "달걀 껍데기"'
+  });
+}
+
+function addBotMessage(entry) {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot';
+  const av = document.createElement('div');
+  av.className = 'msg-av'; av.textContent = '♻';
+  wrap.appendChild(av);
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  let html = '';
+  if (entry.verdict) {
+    html += `<span class="verdict-badge ${entry.vclass}">${entry.verdict}</span><br>`;
+  }
+  html += entry.reply.replace(/\n/g, '<br>');
+  bubble.innerHTML = html;
+  wrap.appendChild(bubble);
+  messagesEl.appendChild(wrap);
+  wrap.scrollIntoView({behavior:'smooth', block:'end'});
+}
+
+function addUserMessage(text) {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg user';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = text;
+  wrap.appendChild(bubble);
+  messagesEl.appendChild(wrap);
+  wrap.scrollIntoView({behavior:'smooth', block:'end'});
+}
+
+function addTyping() {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot';
+  wrap.id = 'typing-wrap';
+  const av = document.createElement('div');
+  av.className = 'msg-av'; av.textContent = '♻';
+  wrap.appendChild(av);
+  const t = document.createElement('div');
+  t.className = 'typing-indicator';
+  t.innerHTML = '<div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div>';
+  wrap.appendChild(t);
+  messagesEl.appendChild(wrap);
+  wrap.scrollIntoView({behavior:'smooth', block:'end'});
+  return wrap;
+}
+
+function quickAsk(text) {
+  const inp = document.getElementById('chat-input');
+  inp.value = text;
+  inp.style.height = 'auto';
+  inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
+  sendMessage();
+}
+
+function sendMessage() {
+  const inp = document.getElementById('chat-input');
+  const text = inp.value.trim();
+  if (!text) return;
+  inp.value = '';
+  inp.style.height = 'auto';
+
+  addUserMessage(text);
+  const typing = addTyping();
+
+  setTimeout(() => {
+    typing.remove();
+    const found = getBotReply(text);
+    if (found) {
+      addBotMessage(found);
+    } else {
+      addBotMessage({
+        verdict: null,
+        reply: fallbackReplies[fallbackIdx % fallbackReplies.length]
+      });
+      fallbackIdx++;
+    }
+  }, 600);
+}
+
+document.getElementById('chat-input').addEventListener('input', function () {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+document.getElementById('chat-input').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+
+/* ─── INIT ─── */
+renderCats();
+startQuiz();
+addInitialMessage();
+
+// 초기 페이지: URL 해시 기반으로 시작 페이지 결정
+(function() {
+  const hash = location.hash;
+  if (hash.startsWith('#guide-')) {
+    const id = hash.replace('#guide-', '');
+    showPage('guide', false);
+    showDetail(id, false);
+    history.replaceState({ page: 'guide', detail: id }, document.title, hash);
+  } else {
+    const initPage = getPageFromHash();
+    showPage(initPage, false);
+    history.replaceState({ page: initPage }, (PAGE_NAMES[initPage] || '분리배출 가이드') + ' · 분리배출 가이드', '#' + initPage);
+    document.title = (PAGE_NAMES[initPage] || '분리배출 가이드') + ' · 분리배출 가이드';
+  }
+})();
+</script>
+</body>
+</html>
